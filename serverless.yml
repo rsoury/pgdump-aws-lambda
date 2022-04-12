@@ -1,0 +1,39 @@
+service: usher-platform-backend
+
+# Pinning the version to currently used version when developing this.
+frameworkVersion: "3"
+
+plugins:
+  - serverless-plugin-include-dependencies
+  - serverless-plugin-common-excludes
+  - serverless-pseudo-parameters
+
+useDotenv: true
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  memorySize: 256
+  timeout: 30
+  stage: ${opt:stage, 'dev'}
+  region: ${opt:region, 'us-east-1'}
+  environment:
+    NODE_ENV:
+      ${self:custom.nodeEnv.${opt:stage, self:provider.stage}, 'development'}
+    STAGE: ${opt:stage, self:provider.stage}
+  stackTags:
+    Project: "Usher"
+  tags:
+    Project: "Usher"
+
+functions:
+  cron:
+    handler: index.handler
+
+custom:
+  nodeEnv:
+    dev: "development"
+    prod: "production"
+  serverless-offline:
+    noPrependStageInUrl: true
+    httpPort: 3005

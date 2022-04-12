@@ -1,10 +1,8 @@
 {
-  "extends": "airbnb-base",
+  "extends": ["airbnb-base", "plugin:prettier/recommended"],
   "rules": {
     "func-names": ["error", "never"],
-    "indent": ["error", 4],
-    "semi": ["error", "never"],
-    "brace-style": ["error", "stroustrup"],
+    "indent": ["error", "tab"],
     "no-restricted-syntax": [
       "error",
       "ForInStatement",
