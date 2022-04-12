@@ -7,6 +7,17 @@ An AWS Lambda function that runs pg_dump and streams the output to s3.
 
 It can be configured to run periodically using CloudWatch events.
 
+## [Usher.so](https://usher.so) fork
+
+This fork adds the Serverless Framework and configuration via Environment Variables
+
+### Quicker Start
+
+1. Create your `.env` file and add your configuration
+2. `sls deploy --stage prod`
+
+Feel free to change the **CRON** rate inside of the `serverless.yml`
+
 ## Quick start
 
 1. Create an AWS lambda function:

@@ -39,3 +39,10 @@ jspm_packages
 
 # IntelliJ files
 .idea/
+
+# Env variables
+.env*
+!.env.example
+
+# serverless
+.serverless

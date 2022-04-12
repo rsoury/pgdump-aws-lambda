@@ -1,4 +1,4 @@
-service: usher-platform-backend
+service: pgdump-aws-lambda
 
 # Pinning the version to currently used version when developing this.
 frameworkVersion: "3"
@@ -29,6 +29,8 @@ provider:
 functions:
   cron:
     handler: index.handler
+    events:
+      - schedule: rate(1 day)
 
 custom:
   nodeEnv:
