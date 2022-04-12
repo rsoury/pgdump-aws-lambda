@@ -21,6 +21,13 @@ provider:
     NODE_ENV:
       ${self:custom.nodeEnv.${opt:stage, self:provider.stage}, 'development'}
     STAGE: ${opt:stage, self:provider.stage}
+    S3_REGION: ${env:S3_REGION, self:provider.region}
+    PGDATABASE: ${env:PGDATABASE}
+    PGUSER: ${env:PGUSER}
+    PGPASSWORD: ${env:PGPASSWORD}
+    PGHOST: ${env:PGHOST}
+    S3_BUCKET: ${env:S3_BUCKET}
+    ROOT: ${env:S3_ROOT}
   stackTags:
     Project: "Usher"
   tags:
