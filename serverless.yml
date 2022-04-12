@@ -22,12 +22,18 @@ provider:
       ${self:custom.nodeEnv.${opt:stage, self:provider.stage}, 'development'}
     STAGE: ${opt:stage, self:provider.stage}
     S3_REGION: ${env:S3_REGION, self:provider.region}
-    PGDATABASE: ${env:PGDATABASE}
-    PGUSER: ${env:PGUSER}
-    PGPASSWORD: ${env:PGPASSWORD}
-    PGHOST: ${env:PGHOST}
-    S3_BUCKET: ${env:S3_BUCKET}
-    ROOT: ${env:S3_ROOT}
+    PGDATABASE: ${env:PGDATABASE, ""}
+    PGUSER: ${env:PGUSER, ""}
+    PGPASSWORD: ${env:PGPASSWORD, ""}
+    PGHOST: ${env:PGHOST, ""}
+    S3_BUCKET: ${env:S3_BUCKET, ""}
+    S3_ROOT: ${env:S3_ROOT, ""}
+    ENCRYPT_KEY: ${env:ENCRYPT_KEY, ""}
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - s3:PutObject
+      Resource: arn:aws:s3:::${env:S3_BUCKET, ""}/*
   stackTags:
     Project: "Usher"
   tags:
